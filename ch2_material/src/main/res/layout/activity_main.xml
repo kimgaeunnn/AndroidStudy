@@ -15,7 +15,8 @@
 				android:id="@+id/toolbar"
 				android:layout_width="match_parent"
 				android:layout_height="?attr/actionBarSize"
-				android:background="?attr/colorPrimary"/>
+				android:background="?attr/colorPrimary"
+				app:theme= "@style/ToolBarStyle"/>
 
 		<!--
 		tabGravity: center, fill 등 지정으로, 버튼 align 조정
