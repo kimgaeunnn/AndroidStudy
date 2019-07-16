@@ -1,0 +1,15 @@
+<resources>
+
+	<!-- Base application theme. -->
+	<style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+		<!-- Customize your theme here. -->
+		<item name="colorPrimary">@color/colorPrimary</item>
+		<item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+		<item name="colorAccent">@color/colorAccent</item>
+		<!-- window actionbar 출력 안되도록, content 영역에서 toolbar로 출력 할 것-->
+		<item name="windowActionBar">false</item>
+		<item name="windowNoTitle">true</item>
+
+	</style>
+
+</resources>
