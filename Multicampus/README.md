@@ -30,10 +30,10 @@ _과정 내에서 다룬 내용이며, sample code에 아래 모든 내용이 �
   * Operation
     * 특이사항 : Null _(?? 가 있음..!)_
   * @BindingAdapter
- * Event Binding
+* Event Binding
   * 함수 참조 방식 
-  * 리스너 방식
- * Model 변경 감지
-  * Observing Object
+  * Listener 방식
+* Model 변경 감지
+  * Observing Object 
   * Observable Field
   * Observable Collection
