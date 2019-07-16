@@ -2,6 +2,9 @@ package com.gaeun.ch2_material;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -11,6 +14,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,7 +22,7 @@ import android.view.View;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
 	ViewPager viewPager;
 	Toolbar toolbar;
@@ -27,6 +31,9 @@ public class MainActivity extends AppCompatActivity {
 	DrawerLayout drawerLayout;
 	ActionBarDrawerToggle toggle;
 	boolean isDrawerOpened;
+
+	FloatingActionButton fab;
+	CoordinatorLayout coordinatorLayout;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +79,22 @@ public class MainActivity extends AppCompatActivity {
 		// tabButton을 꾸미는건 (문자열) 코드에서 직접 해도 되고,
 		// viewPager와 연결되어있다면, 해당 viewPager화면 title 문자열을 그대로 가져옴.
 		tabLayout.setupWithViewPager(viewPager);
+
+		fab = findViewById(R.id.fab);
+		coordinatorLayout = findViewById(R.id.coordinator);
+		fab.setOnClickListener(this);
+	}
+
+	@Override
+	public void onClick(View view) {
+		Snackbar.make(coordinatorLayout, "gaeuniya", Snackbar.LENGTH_LONG)
+				.setAction("어키", new View.OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						Log.d("gaeun", "FAB Clicked");
+					}
+				})
+				.show();
 	}
 
 	// menu event 처리함수
