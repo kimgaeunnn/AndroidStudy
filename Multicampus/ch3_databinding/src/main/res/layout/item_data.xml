@@ -3,6 +3,7 @@
 
 	<!-- import, variable tag-->
 	<data>
+		<import type="com.gaeun.ch3_databinding.EventHandler"/>
 		<import type="com.gaeun.ch3_databinding.model.User" />
 		<variable
 			name="user"
@@ -50,6 +51,8 @@
 			android:adjustViewBounds="true"
 			android:maxWidth="24dp"
 			android:maxHeight="24dp"
-			android:src="@drawable/ic_phone" />
+			android:src="@drawable/ic_phone"
+			android:clickable="true"
+			android:onClick="@{() -> EventHandler.onPhoneCall(context, user.phone)}"/>
 	</RelativeLayout>
 </layout>

@@ -14,6 +14,7 @@ import com.gaeun.ch3_databinding.model.User;
 import com.gaeun.ch3_databinding.recycler.MyAdapter;
 import com.gaeun.ch3_databinding.recycler.MyDecoration;
 import com.gaeun.ch3_databinding.util.AdapterUtil;
+import com.gaeun.ch3_databinding.util.PermissionUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +30,10 @@ public class MainActivity extends AppCompatActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+
+		// Permission check, disable 인 경우 조정 dialog 띄우기
+		PermissionUtil.checkPermission(this, "android.permission.CALL_PHONE");
+
 		setContentView(R.layout.activity_main);
 
 		binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
