@@ -1,1 +1,1 @@
-include ':app', ':ch2_material'
+include ':app', ':ch2_material', ':ch3_databinding'

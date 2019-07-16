@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/Multicampus.iml" filepath="$PROJECT_DIR$/Multicampus.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/ch2_material/ch2_material.iml" filepath="$PROJECT_DIR$/ch2_material/ch2_material.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ch3_databinding/ch3_databinding.iml" filepath="$PROJECT_DIR$/ch3_databinding/ch3_databinding.iml" />
     </modules>
   </component>
 </project>
