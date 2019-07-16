@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:padding="12dp">
+
+	<ImageView
+		android:id="@+id/item_person"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:adjustViewBounds="true"
+		android:background="@drawable/circle_background"
+		android:maxWidth="32dp"
+		android:maxHeight="32dp"
+		android:src="@drawable/ic_person" />
+
+	<TextView
+		android:id="@+id/item_name"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginLeft="16dp"
+		android:layout_toRightOf="@id/item_person"
+		android:textSize="15dp"
+		android:textStyle="bold" />
+
+	<TextView
+		android:id="@+id/item_date"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_below="@id/item_name"
+		android:layout_alignLeft="@id/item_name" />
+
+	<ImageView
+		android:id="@+id/item_dialer"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_alignParentRight="true"
+		android:adjustViewBounds="true"
+		android:maxWidth="24dp"
+		android:maxHeight="24dp"
+		android:src="@drawable/ic_phone" />
+</RelativeLayout>

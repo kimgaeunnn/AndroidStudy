@@ -25,7 +25,7 @@ public class ThreeFragment extends Fragment {
         if (container == null) {
             return null;
         }
-        return (LinearLayout)inflater.inflate(R.layout.fragment_three, container, false);
+        return inflater.inflate(R.layout.fragment_three, container, false);
     }
 
 
