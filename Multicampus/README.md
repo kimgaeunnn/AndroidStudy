@@ -5,7 +5,7 @@ Multicampus에서 진행하는 "안드로이드 고급" 과정 내용을 바탕�
 이 프로젝트에서 공부한 내용은 다음과 같습니다.
 _과정 내에서 다룬 내용이며, sample code에 아래 모든 내용이 들어가있진 않습니다._
 
-### CH2 Module (UI Technique)
+### CH2 UI Technique
 * Material Design
 * Toolbar
 * NavigationDrawer, Navigation View
@@ -37,3 +37,13 @@ _과정 내에서 다룬 내용이며, sample code에 아래 모든 내용이 �
   * Observing Object 
   * Observable Field
   * Observable Collection
+  
+### CH4 Android Component
+* BroadcastReceiver 
+* Service
+  * IntentService
+  * Android AIDL
+* BackgroundLimits
+* JobScheduler
+* Notification
+* ContentProvider
