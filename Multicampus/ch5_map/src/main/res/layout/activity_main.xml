@@ -2,7 +2,7 @@
     <data>
         <variable
             name="data"
-            type="com.example.ch5_lbs.Data"/>
+            type="com.gaeun.ch5_map.Data"/>
     </data>
     <LinearLayout
         android:layout_width="match_parent"

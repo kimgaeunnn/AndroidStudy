@@ -3,10 +3,17 @@
           package="com.gaeun.ch5_map">
 
     <!-- Permission 이름을 package_name + permission.MAS_RECEIVE로 선언하고
-     protection Level은 signature로 설정, 그 이름으로 uses-permission까지 설정-->
+     protection Level은 signature로 설정, 그 이름으로 uses-permission까지 설-->
     <permission android:name="com.gaeun.ch5_map.permission.MAPS_RECEIVE"
                 android:protectionLevel="signature"/>
     <uses-permission android:name="com.gaeun.ch5_map.permission.MAPS_RECEIVE"/>
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <!-- play service library는 각종 구글 컨텐츠 활용 library, 내부적으로 구글 앱을 연동, 그 앱에 요구 -->
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES"/>
 
     <application
             android:allowBackup="true"
@@ -15,6 +22,16 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
+
+        <!-- java.lang.ClassNotFoundException: Didn't find class "org.apache.http.ProtocolVersion" on path 에러가 나는 경우
+        apache http library가 공식적으로 제거된 상태이고, 만약 사용하겠다면, manifest에 선언해줘야함.
+        (Google Play Service lib에서 사용중이라서 난 것)-->
+        <uses-library android:name="org.apache.http.legacy" android:required="false"/>
+
+        <meta-data android:name="com.google.android.geo.API_KEY"
+                   android:value="AIzaSyADet7JANk5zlgYGvopA_H_NaCEj2bhAqc"/>
+        <meta-data android:name="com.google.android.gms.version"
+                   android:value="@integer/google_play_services_version"/>/
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
