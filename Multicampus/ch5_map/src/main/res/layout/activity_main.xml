@@ -1,0 +1,62 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <variable
+            name="data"
+            type="com.example.ch5_lbs.Data"/>
+    </data>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:stretchColumns="1">
+
+            <TableRow
+                android:divider="#000000"
+                android:dividerPadding="1dp"
+                android:padding="3dp"
+                android:showDividers="end">
+
+                <TextView android:text="Time" />
+
+                <TextView
+                    android:id="@+id/gps_time"
+                    android:layout_marginLeft="10dp"
+                    android:text="@{data.gps_time}"/>
+            </TableRow>
+
+            <TableRow android:padding="3dp">
+
+                <TextView android:text="Location" />
+
+                <TextView
+                    android:id="@+id/gps_location"
+                    android:layout_marginLeft="10dp"
+                    android:text="@{data.gps_location}"/>
+            </TableRow>
+
+            <TableRow android:padding="3dp">
+
+                <TextView android:text="Accuracy" />
+
+                <TextView
+                    android:id="@+id/gps_accuracy"
+                    android:layout_marginLeft="10dp"
+                    android:text="@{data.gps_accuracy}"/>
+            </TableRow>
+        </TableLayout>
+        <!-- test2 지도 찍기 -->
+        <fragment
+            android:id="@+id/map_view"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+
+    </LinearLayout>
+</layout>

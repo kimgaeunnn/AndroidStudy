@@ -1,1 +1,1 @@
-include ':app', ':ch2_material', ':ch3_databinding', ':ch4_aidl', ':ch4_aidl_client', ':ch4_noti_job'
+include ':app', ':ch2_material', ':ch3_databinding', ':ch4_aidl', ':ch4_aidl_client', ':ch4_noti_job', ':ch5_map'
