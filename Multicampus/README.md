@@ -47,3 +47,22 @@ _과정 내에서 다룬 내용이며, sample code에 아래 모든 내용이 �
 * JobScheduler
 * Notification
 * ContentProvider
+
+### CH5 LBS Programming
+ * LocationManager
+ * FusedLocation
+ * GoogleMap
+ * GeoCoder
+ * Marker
+ 
+### CH6 Network Programming
+
+ * Network 정보 확인
+   * TelePhony Manager
+   * Wifi Manager
+   * Connectivity Manager
+ * Http
+ * Volley
+ * Retrofit
+ * TCP/IP
+ * Firebase Cloud Message
