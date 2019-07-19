@@ -45,11 +45,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 	Handler writeHandler;
 
 	Socket socket;
-	BufferedInputStream bIn;
-	BufferedOutputStream bOut;
+	BufferedInputStream bin;
+	BufferedOutputStream bout;
 
 	SocketThread st; // 연결관리 thread
+	ReadThread rt;
+	WriteThread wt;
 
+	// 깡샘 서버
+	String serverIp = "10.5.6.100";
+	int serverPort = 7070;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -147,22 +152,88 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 	};
 
 
+	// Connection 관리 thread
 	class SocketThread extends Thread {
 
 		public void run() {
 
-			//add~~~~~~~~~~~~~~~~~
+			while (flagConnection) {
+				try {
+					// 연결상태를 지속적으로 체크, 연결이 되지 않은 상황이면 다시 연결을 시도
+					if (!isConnected) {
+						socket = new Socket();
+						SocketAddress remoteAddr = new InetSocketAddress(serverIp, serverPort);
+						socket.connect(remoteAddr, 10000);
 
+						bout = new BufferedOutputStream(socket.getOutputStream());
+						bin = new BufferedInputStream(socket.getInputStream());
 
+						//새로운 연결이 되었음.
+						// read, write thread가 구동중이라면, 이전 연결정보로 동작중인 것이기 때문에
+						// 종료시키고 다시 Start 해야함.
+						if (rt != null) {
+							flagRead = false;
+						}
+						if (wt != null) {
+							writeHandler.getLooper().quit();
+						}
+
+						// Start
+						wt = new WriteThread();
+						wt.start();
+
+						rt = new ReadThread();
+						rt.start();
+
+						isConnected = true;
+
+						// 연결 성공, 화면 조정 필요
+						// Thread 다르니까 mainThread에 view 조정 요청
+						Message msg = new Message();    // 의뢰 내용
+						msg.what = 10;                  // 의뢰 구분자, 개발자 임의숫자임
+						mainHandler.sendMessage(msg);
+					} else {
+						SystemClock.sleep(10000);
+					}
+
+				} catch (Exception e) {
+					e.printStackTrace();
+					SystemClock.sleep(10000);
+				}
+
+			}
 		}
 	}
 
+	// API level 25부터는 socket write가 꼭 thread에 의해 처리되어야 함.
 	class WriteThread extends Thread {
 
+		// Thread 내에서 looper를 구동시키면, 자동으로 looper가 감지해야하는 message queue가 만들어짐
+		// 아래처럼 작성하면, Thread 내부에서 Loop문 돌리지 않아도 looper가 동료되지 않는한
+		// thread는 죽지 않음
+		// (write thread를 죽일때 flag변경이 아니라 looper.quit으로 한게 이 방법으로 했기 때문임 ^^)
 		@Override
 		public void run() {
-			//add~~~~~~~~~~
+			Looper.prepare();
+			// looper 가 감지하는 message queue에 queue가 하나 담겼을때 실행될 handler 정의
+			writeHandler = new Handler() {
+				@Override
+				public void handleMessage(Message msg) {
+					try {
+						bout.write(((String) msg.obj).getBytes());
+						bout.flush();
 
+						Message message = new Message();
+						message.what = 200;
+						message.obj = msg.obj;
+						mainHandler.sendMessage(message);
+					} catch (Exception e) {
+						// 플래그 바꿔주면 Connection Thread에서 다시 알아서 맺을것
+						isConnected = false;
+					}
+				}
+			};
+			Looper.loop();
 		}
 	}
 
@@ -170,9 +241,35 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 		@Override
 		public void run() {
-			//add~~~~~~~~~~~~~~~~~~~
+			byte[] buffer = null;
+			while (flagRead) {
+				buffer = new byte[1024];
+				try {
+					String message = null;
 
+					// read() 함수 만나면 서버로부터 데이터 들어올때까지 대기 상태
+					// 넘어온 데이터를 buffer에 담아주고, 몇바이트 읽었는지 리턴
+					int size = bin.read(buffer);
 
+					if (size > 0) {
+						message = new String(buffer, 0, size, "utf-8");
+						if (message != null && !message.equals("")) {
+							Message msg = new Message();
+							msg.what = 100;
+							msg.obj = message;
+							mainHandler.sendMessage(msg);
+						}
+					} else {
+						isConnected = false;
+					}
+				} catch (Exception e) {
+					isConnected = false;
+				}
+			}
+
+			Message msg=  new Message();
+			msg.what = 20;
+			mainHandler.sendMessage(msg);
 		}
 
 	}
