@@ -1,0 +1,14 @@
+- build.gradle
+- 파일 복사
+- AndroidManifest.xml
+
+MyDataSource.java
+MyDataFactory.java
+
+ArticleDAO.java
+
+MyViewModel.java
+
+MyListAdapter.java
+
+MainActivity.java

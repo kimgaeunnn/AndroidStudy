@@ -28,7 +28,7 @@ import retrofit2.Retrofit;
 public class MainActivity extends AppCompatActivity {
 
 	private static final String QUERY = "travel";
-	private static final String API_KEY = "079dac74a5f94ebdb990ecf61c8854b7";
+	private static final String API_KEY = "MY_API_KEY";
 
 	ActivityMainBinding binding;
 
